@@ -1,22 +1,20 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 
-class Mylogin extends StatefulWidget {
-  const Mylogin({Key? key}) : super(key: key);
+class MyRegister extends StatefulWidget {
+  const MyRegister({Key? key}) : super(key: key);
 
   @override
-  State<Mylogin> createState() => _MyloginState();
+  State<MyRegister> createState() => _MyRegisterState();
 }
 
-class _MyloginState extends State<Mylogin> {
+class _MyRegisterState extends State<MyRegister> {
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/login background.png'), fit: BoxFit.cover
-        )
+          image: DecorationImage(
+              image: AssetImage('assets/registerbg.png'), fit: BoxFit.cover
+          )
       ),
       child: Scaffold(
         backgroundColor: Colors.transparent,
@@ -25,7 +23,7 @@ class _MyloginState extends State<Mylogin> {
             Container(
               padding: EdgeInsets.only(left: 35,top: 130),
               child: Text(
-                'Welcome\nUser',style: TextStyle(color: Colors.white,fontSize: 33),
+                'Create\nAccount',style: TextStyle(color: Colors.white,fontSize: 33),
               ),
             ),
             SingleChildScrollView(
@@ -35,12 +33,12 @@ class _MyloginState extends State<Mylogin> {
                   children: [
                     TextField(
                       decoration: InputDecoration(
-                        fillColor: Colors.grey.shade100,
-                        filled: true,
-                        hintText: 'Email',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10)
-                        )
+                          fillColor: Colors.grey.shade100,
+                          filled: true,
+                          hintText: 'Email',
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10)
+                          )
                       ),
                     ),
                     SizedBox(height: 30,),
@@ -55,6 +53,17 @@ class _MyloginState extends State<Mylogin> {
                           )
                       ),
                     ),
+                    SizedBox(height: 30,),
+                    TextField(
+                      decoration: InputDecoration(
+                          fillColor: Colors.grey.shade100,
+                          filled: true,
+                          hintText: 'Confirm Password',
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10)
+                          )
+                      ),
+                    ),
                     SizedBox(
                       height: 40,
                     ),
@@ -62,7 +71,7 @@ class _MyloginState extends State<Mylogin> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          'Sign In',
+                          'Create',
                           style: TextStyle
                             (
                               fontSize: 27,
@@ -75,31 +84,13 @@ class _MyloginState extends State<Mylogin> {
                           child: IconButton(
                             color: Colors.white,
                             onPressed: (){
-                              Navigator.pushNamed(context, 'home');
+                              Navigator.pushNamed(context, 'login');
                             },
                             icon: Icon(Icons.arrow_forward),
                           ),
                         )
                       ],
                     ),
-                    SizedBox(height: 40,),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        TextButton(onPressed: (){
-                          Navigator.pushNamed(context, 'register');
-                        },
-                            child: Text(
-                          'Sign up',
-                          style: TextStyle(decoration: TextDecoration.underline,
-                        fontSize: 18,
-                        color: Colors.blue),)),
-                        TextButton(onPressed: (){}, child: Text('Forgot Password',
-                          style: TextStyle(decoration: TextDecoration.underline,
-                            fontSize: 18,
-                            color: Colors.blue),))
-                      ],
-                    )
                   ],
                 ),
               ),

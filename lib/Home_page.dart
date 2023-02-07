@@ -25,13 +25,14 @@ class _homeScreenState extends State<homeScreen> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text('Select Date',style:TextStyle(fontSize: 20),)
-                        ElevatedButton(onPressed: ()async {
-                          DateTime? datePicked= await showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime(2022), lastDate: DateTime(2024))
-                        }, child: Text('Date'))
                       ],
-                    )
+                    ),
+                    Column(
+                  children:[ ElevatedButton(onPressed: ()async {
+                      DateTime? datePicked= await showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime(2022), lastDate: DateTime(2024));
+                    }, child: Text('Date'))])
 
-                  ],
+                  ]
 
                 ),
 

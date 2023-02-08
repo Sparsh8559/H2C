@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class homeScreen extends StatefulWidget {
@@ -30,7 +32,12 @@ class _homeScreenState extends State<homeScreen> {
                     Column(
                   children:[ ElevatedButton(onPressed: ()async {
                       DateTime? datePicked= await showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime(2022), lastDate: DateTime(2024));
-                    }, child: Text('Date'))])
+                    }, child: Text('Date'))]),
+                    Column(
+                      children: [
+                        ElevatedButton(onPressed: (){}, child: Text('Logout'))
+                      ],
+                    )
 
                   ]
 
@@ -41,13 +48,29 @@ class _homeScreenState extends State<homeScreen> {
             Expanded(
               flex: 4,
               child: Container(
-                child: Center(
-                  child:Image.asset('assets/message-130659740-14367398737171749148.jpg'),
+                decoration: BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage('assets/message-130659740-14367398737171749148.jpg'), fit: BoxFit.cover
+                    )
                 ),
+                child: BackdropFilter(
+                  filter: ImageFilter.blur(sigmaX: 10,sigmaY: 10),
+                  child: Center(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton(onPressed: (){
+                          Navigator.pushNamed(context, 'map');
+                        }, child: Text('Get Map'))
+                      ],
+                    ),
+                  )
+                ),
+
+                )
 
 
               ),
-            ),
             Expanded(
               flex: 2,
               child: Container(

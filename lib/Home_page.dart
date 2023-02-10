@@ -46,7 +46,7 @@ class _homeScreenState extends State<homeScreen> {
               ),
             ),
             Expanded(
-              flex: 4,
+              flex: 2,
               child: Container(
                 decoration: BoxDecoration(
                     image: DecorationImage(
@@ -54,7 +54,7 @@ class _homeScreenState extends State<homeScreen> {
                     )
                 ),
                 child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 10,sigmaY: 10),
+                  filter: ImageFilter.blur(sigmaX: 5,sigmaY: 5),
                   child: Center(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,

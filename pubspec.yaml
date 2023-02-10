@@ -45,6 +45,7 @@ dependencies:
   flutter_secure_storage: ^8.0.0
   flutter_spinkit: ^5.1.0
   tinycolor2: ^3.0.1
+  flutter_lints: ^2.0.1
 
 
 dev_dependencies:

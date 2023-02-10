@@ -1,11 +1,14 @@
 import 'dart:async';
+import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:h2c/brain/pointerclass.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class mapRoute extends StatefulWidget {
-  const mapRoute({Key? key}) : super(key: key);
+    final List<Pinter> pointerList;
+  const mapRoute({Key? key, required this.pointerList}) : super(key: key);
 
   @override
   State<mapRoute> createState() => _mapRouteState();
@@ -14,37 +17,31 @@ class mapRoute extends StatefulWidget {
 class _mapRouteState extends State<mapRoute> {
   Completer<GoogleMapController> _controller = Completer();
 
+
+// void LatLangAdder(List<Pinter> pointerList){
+ 
+// }
+
   static final CameraPosition _kgoogleplex = const CameraPosition(
     target: LatLng(12.9716, 77.5946),
     zoom: 13,
   );
 
   Set<Marker> _markers = {};
-  List<LatLng> _latlng = [
-    LatLng(12.9716, 77.5946),
-    LatLng(13.9716, 76.5946),
-    LatLng(11.9716, 75.5946),
-  ]; // lattitude and longitude
+  List<LatLng> _latlng = []; // lattitude and longitude
   Set<Polyline> _polyline = {};
 
   @override
   void initState() {
     super.initState();
-    for (int i = 0; i < _latlng.length; i++) {
-      _markers.add(Marker(
-        markerId: MarkerId(i.toString()),
-        position: _latlng[i],
-        infoWindow: InfoWindow(title: 'title'),
-        icon: BitmapDescriptor.defaultMarker,
-      ));
-      setState(() {});
-      _polyline.add(Polyline(
-          polylineId: PolylineId('1'),
-          points: _latlng,
-          color: Colors.blueAccent,
-          width: 10));
-    }
+    // LatLangAdder(pointerList);
+
+
+
+
   }
+
+
 
 
 // Future<void> getDriverMarkers() async {
@@ -110,9 +107,31 @@ class _mapRouteState extends State<mapRoute> {
 
 
 
-
   @override
   Widget build(BuildContext context) {
+    
+      widget.pointerList.forEach((element) {
+      LatLng latter = LatLng(element.latitude, element.longitude);
+      _latlng.add(latter);
+    });
+
+
+
+    for (int i = 0; i < _latlng.length; i++) {
+      _markers.add(Marker(
+        markerId: MarkerId(i.toString()),
+        position: _latlng[i],
+        infoWindow: InfoWindow(title: 'title'),
+        icon: BitmapDescriptor.defaultMarker,
+      ));
+      setState(() {});
+      _polyline.add(Polyline(
+          polylineId: PolylineId('1'),
+          points: _latlng,
+          color: Colors.blueAccent,
+          width: 10));
+    }
+
     return Scaffold(
       appBar: AppBar(
         title: Text(

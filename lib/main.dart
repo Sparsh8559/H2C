@@ -12,7 +12,7 @@ void main() {
       'login': (context) => Mylogin(),
       'register':(context)=>MyRegister(),
       'home':(context)=>homeScreen(),
-      'map':(context)=> mapRoute(),
+      'map':(context)=> mapRoute(pointerList: [],),
     },
   ));
 }

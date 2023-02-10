@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class mapRoute extends StatefulWidget {
   const mapRoute({Key? key}) : super(key: key);
@@ -50,6 +52,67 @@ class _mapRouteState extends State<mapRoute> {
 
     }
   }
+
+
+Future<void> getDriverMarkers() async {
+    // String AccessTokenStored = await storage.read(key: 'accessToken');
+    String AccessTokenStored = ""
+    if (AccessTokenStored == "") {
+      // print('Error in access token storate only******************');
+      Navigator.pushReplacementNamed(context, 'login');
+    } else {
+      final response = await http.post(
+        Uri.parse(
+            'https://52.66.31.173/address/csvDetails/'),
+        headers: <String, String>{
+          'Content-Type': 'application/json; charset=UTF-8',
+          'Authorization': 'Token $AccessTokenStored'
+        },
+      );
+
+      if (response.statusCode == 200) {
+        // print(response.body);
+        List<dynamic> data = json.decode(response.body);
+        // Set<Circle> _circles = Set<Circle>();
+        print("Is this functioning even bing called *************************");
+        data.forEach((element) async{
+          var nameS = element['name'];
+          var latitudeS = element['latitude'];
+          var longitudeS = element['longitude'];
+          var radiuS = element['radius'];
+          // print('*******************************************$nameS***************************************' );
+          var huecolor = BitmapDescriptor.hueRed;
+          print("Is this function even functioning");
+          var adder = await addCircleMarker(latitudeS, longitudeS, nameS, huecolor);
+          _markers1.add(adder);
+          //  _markers1.add(addMarkers(latitudeS, longitudeS, nameS, huecolor));
+                //  print("Loop running Successfully **************************************");
+        });
+        setState(() {});
+                // print(_circles);
+
+                  //         List<CheckPostInfo> CPList = [];
+                //         CPList.add(CheckPostInfo.fromJson(jsonDecode(response.body)));
+                // print(CPList);
+
+        // basially iterate through the elements of the resopnse.body, and pass circle
+        // _circles.add(addCircles(latitudeS, longitudeS, radiuS, nameS, huecolor));
+
+      } else {
+        // print("There is Some error in the return of that checkpost details function**********************************************");
+        // storage.delete(key: 'accessToken');
+        // storage.delete(key: 'email');
+        // Navigator.pushNamed(context, SignInScreen.routeName);
+      }
+    }
+  }
+
+
+
+
+
+
+
 
 
   @override

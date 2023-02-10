@@ -1,6 +1,3 @@
-import 'dart:js';
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:h2c/Home_page.dart';
 import 'package:h2c/loginpage.dart';

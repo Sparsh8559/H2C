@@ -1,8 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class Mylogin extends StatefulWidget {
   const Mylogin({Key? key}) : super(key: key);
@@ -24,7 +20,7 @@ class _MyloginState extends State<Mylogin> {
     return Container(
       decoration: BoxDecoration(
         image: DecorationImage(
-          image: AssetImage('assets/login background.png'), fit: BoxFit.cover
+          image: AssetImage('assets/login_background.png'), fit: BoxFit.cover
         )
       ),
       child: Scaffold(
@@ -86,7 +82,7 @@ class _MyloginState extends State<Mylogin> {
                             onPressed: (){
                               // int responseCode = await LoginInfo(email, password);
                               // if (responseCode == 200){
-                              //   Navigator.pushReplacementNamed(context, 'home');
+                                Navigator.pushReplacementNamed(context, 'home');
                               // }
                               // else {
                               //   LoginFailureAlertBox(context);
@@ -127,69 +123,69 @@ class _MyloginState extends State<Mylogin> {
 }
 
 
-Future<int> LoginInfo(email, password) async {
-  final response = await http.post(
-    Uri.parse('https://52.66.31.173/login/IKkS5YPBWP6GPZiuvPB91hk0Qbm0JNsn/'),
-    headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
+// Future<int> LoginInfo(email, password) async {
+//   final response = await http.post(
+//     Uri.parse('https://52.66.31.173/login/IKkS5YPBWP6GPZiuvPB91hk0Qbm0JNsn/'),
+//     headers: <String, String>{
+//       'Content-Type': 'application/json; charset=UTF-8',
 
-    },
-    body: jsonEncode(<String, String>{
-      'username': email,
-      'password': password,
-    }),
-  );
-  if (response.statusCode == 200) {
-    // SharedPreferences prefs = await SharedPreferences.getInstance();
-    // String acessToken = jsonDecode(response.body)['access_token'];
-    // prefs.setString('access', acessToken);
-    // Access_token = acessToken;
-    final storage = new FlutterSecureStorage();
-    String acessTokenSecure = jsonDecode(response.body)['token'];
-    await storage.write(key: 'accessToken', value: acessTokenSecure);
-    // print('******************************************** access token *******************************8');
-    // print(await storage.read(key: 'accessToken'));
-    await storage.write(key: 'email', value: email);
+//     },
+//     body: jsonEncode(<String, String>{
+//       'username': email,
+//       'password': password,
+//     }),
+//   );
+//   if (response.statusCode == 200) {
+//     // SharedPreferences prefs = await SharedPreferences.getInstance();
+//     // String acessToken = jsonDecode(response.body)['access_token'];
+//     // prefs.setString('access', acessToken);
+//     // Access_token = acessToken;
+//     final storage = new FlutterSecureStorage();
+//     String acessTokenSecure = jsonDecode(response.body)['token'];
+//     await storage.write(key: 'accessToken', value: acessTokenSecure);
+//     // print('******************************************** access token *******************************8');
+//     // print(await storage.read(key: 'accessToken'));
+//     await storage.write(key: 'email', value: email);
 
-  }
-  return response.statusCode;
+//   }
+//   return response.statusCode;
 
-}
+// }
 
-void LoginFailureAlertBox(context) {
-  showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      Size size = MediaQuery.of(context).size;
+// void LoginFailureAlertBox(context) {
+//   showDialog(
+//     context: context,
+//     builder: (BuildContext context) {
+//       Size size = MediaQuery.of(context).size;
 
-      return AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-        elevation: 24.0,
-        backgroundColor: Colors.red[400],
-        title: Text(
-          "User Not Logged In !",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontWeight: FontWeight.w500,
-            color: Colors.black,
-          ),
-        ),
-        content:Text("Use Could not be loggedin ",
-          textAlign: TextAlign.center,
-          style: TextStyle(fontWeight: FontWeight.w400, color: Colors.black ),),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Navigator.pop(context, 'OK'),
-            child: const Text(
-              "Okay",
-              style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w300,
-              ),
-            ),
-          ),
-        ],
-      );
-    },
-  );
-}
+//       return AlertDialog(
+//         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
+//         elevation: 24.0,
+//         backgroundColor: Colors.red[400],
+//         title: Text(
+//           "User Not Logged In !",
+//           textAlign: TextAlign.center,
+//           style: TextStyle(
+//             fontWeight: FontWeight.w500,
+//             color: Colors.black,
+//           ),
+//         ),
+//         content:Text("Use Could not be loggedin ",
+//           textAlign: TextAlign.center,
+//           style: TextStyle(fontWeight: FontWeight.w400, color: Colors.black ),),
+//         actions: <Widget>[
+//           TextButton(
+//             onPressed: () => Navigator.pop(context, 'OK'),
+//             child: const Text(
+//               "Okay",
+//               style: TextStyle(
+//                 color: Colors.black,
+//                 fontWeight: FontWeight.w300,
+//               ),
+//             ),
+//           ),
+//         ],
+//       );
+//     },
+//   );
+// }

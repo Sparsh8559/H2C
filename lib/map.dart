@@ -57,7 +57,7 @@ class _mapRouteState extends State<mapRoute> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Route Polygon',style: TextStyle(fontSize: ),),
+        title: Text('Route Polygon',style: TextStyle(fontSize: 15),),
       ),
       body: SafeArea(
         child: GoogleMap(

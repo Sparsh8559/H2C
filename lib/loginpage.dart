@@ -83,14 +83,14 @@ class _MyloginState extends State<Mylogin> {
                           backgroundColor: Colors.blue,
                           child: IconButton(
                             color: Colors.white,
-                            onPressed: ()async{
-                              int responseCode = await LoginInfo(email, password);
-                              if (responseCode == 200){
-                                Navigator.pushReplacementNamed(context, 'home');
-                              }
-                              else {
-                                LoginFailureAlertBox(context);
-                              }
+                            onPressed: (){
+                              // int responseCode = await LoginInfo(email, password);
+                              // if (responseCode == 200){
+                              //   Navigator.pushReplacementNamed(context, 'home');
+                              // }
+                              // else {
+                              //   LoginFailureAlertBox(context);
+                              // }
                             },
                             icon: Icon(Icons.arrow_forward),
                           ),

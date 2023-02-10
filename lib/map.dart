@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -25,7 +24,7 @@ class _mapRouteState extends State<mapRoute> {
     LatLng(12.9716,  77.5946),
     LatLng(13.9716,  76.5946),
     LatLng(11.9716,  75.5946),
-  ];
+  ];// lattitude and longitude
   Set<Polyline> _polyline={};
 
 

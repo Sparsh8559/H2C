@@ -13,44 +13,60 @@ class mapRoute extends StatefulWidget {
 class _mapRouteState extends State<mapRoute> {
   Completer<GoogleMapController> _controller=Completer();
 
-  static final CameraPosition _kgoogleplex = const CameraPosition(target:
-  LatLng(12.9716,  77.5946),
-  zoom: 13,);
+  static final CameraPosition _kgoogleplex = const CameraPosition(
+    target: LatLng(12.9716,  77.5946),
+  zoom: 13,
+  );
 
 
-  List<Marker> _marker =[];
-  List<Marker> _list =[
-    Marker(markerId: MarkerId('1'),
-    position: LatLng(12.9716,  77.5946),
-    infoWindow: InfoWindow(title: 'Current Location')),
-    Marker(markerId: MarkerId('2'),
-        position: LatLng(13.9716,  76.5946),
-        infoWindow: InfoWindow(title: 'My location')),
-    Marker(markerId: MarkerId('3'),
-        position: LatLng(11.9716,  75.5946),
-        infoWindow: InfoWindow(title: 'Location')),
-    Marker(markerId: MarkerId('4'),
-        position: LatLng(12.9716,  77.5946),
-        infoWindow: InfoWindow(title: 'Current'))
+  Set<Marker> _markers ={};
+  List<LatLng> _latlng =[
+
+    LatLng(12.9716,  77.5946),
+    LatLng(13.9716,  76.5946),
+    LatLng(11.9716,  75.5946),
   ];
+  Set<Polyline> _polyline={};
+
 
   @override
   void initState(){
     super.initState();
-    _marker.addAll(_list);
+    for(int i =0;i< _latlng.length;i++){
+      _markers.add(
+          Marker(markerId: MarkerId(i.toString()),
+              position: _latlng[i],
+              infoWindow: InfoWindow(title: 'title'),
+          icon: BitmapDescriptor.defaultMarker,
+          )
+      );
+      setState(() {
+
+      });
+      _polyline.add(
+        Polyline(polylineId: PolylineId('1'),
+        points: _latlng,
+        color: Colors.blueAccent)
+      );
+
+    }
   }
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Route Polygon',style: TextStyle(fontSize: ),),
+      ),
       body: SafeArea(
         child: GoogleMap(
           initialCameraPosition: _kgoogleplex,
-          markers: Set<Marker>.of(_marker),
+          markers: _markers,
           onMapCreated: (GoogleMapController Controller){
             _controller.complete(Controller);
           },
+          polylines: _polyline,
           myLocationEnabled: true,
           compassEnabled: true,
         ),

@@ -1,0 +1,44 @@
+{
+    "resp": [
+        {
+            "driver": {
+                "id": 2,
+                "email": "sparsh@gmail.com",
+                "username": "sparsh",
+                "userType": "DP"
+            },
+            "estimatedDeliveryDate": "2023-02-11T02:31:20+05:30",
+            "calulatedDeliveryDate": "2023-02-11T00:00:00+05:30",
+            "awb_no": "11234",
+            "deliveryNumber": 1,
+            "timeDuration": 1,
+            "loadWeight": 1,
+            "sheetNumber": 1,
+            "location": {
+                "latitude": 12.9716,
+                "longitude": 77.5946,
+                "address": "Bangalore 1"
+            }
+        },
+        {
+            "driver": {
+                "id": 2,
+                "email": "sparsh@gmail.com",
+                "username": "sparsh",
+                "userType": "DP"
+            },
+            "estimatedDeliveryDate": "2023-02-11T02:31:37+05:30",
+            "calulatedDeliveryDate": "2023-02-11T00:00:00+05:30",
+            "awb_no": "1234",
+            "deliveryNumber": 2,
+            "timeDuration": 1,
+            "loadWeight": 1,
+            "sheetNumber": 1,
+            "location": {
+                "latitude": 12.9916,
+                "longitude": 77.5846,
+                "address": "Bangalore 2"
+            }
+        }
+    ]
+}

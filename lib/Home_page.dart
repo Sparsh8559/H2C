@@ -51,6 +51,7 @@ Future<List<Pinter>> getLocationDetails(String date) async {
           var longitude = element['location']['longitude'];
           var address = element['location']['address'];
           Pinter specPointer = Pinter(address: address, longitude: longitude, latitude: latitude);
+          // print(specPointer);
           pointerList.add(specPointer);
         });
         return pointerList;

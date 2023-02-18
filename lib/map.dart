@@ -121,8 +121,9 @@ class _mapRouteState extends State<mapRoute> {
       _markers.add(Marker(
         markerId: MarkerId(i.toString()),
         position: _latlng[i],
-        infoWindow: InfoWindow(title: 'title'),
+        infoWindow: InfoWindow(title: widget.pointerList[i].address),
         icon: BitmapDescriptor.defaultMarker,
+      
       ));
       setState(() {});
       _polyline.add(Polyline(
